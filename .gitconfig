@@ -45,3 +45,7 @@
     helper = cache
 [pull]
 	rebase = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra

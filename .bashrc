@@ -68,7 +68,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # For git info in terminal prompt. See: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-# source ~/.git-prompt.sh # Not needed, seems to be pre-installed
+# source ~/.git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true # unstaged changes *, staged changed +
 GIT_PS1_SHOWSTASHSTATE=true # stashed changes $
 GIT_PS1_SHOWUNTRACKEDFILES=true # untracked files %
@@ -140,6 +140,7 @@ alias grepr='grep -Rn --exclude-dir=".git" --exclude-dir="vendor" --exclude-dir=
 alias grepgo='grep -Rn --exclude-dir=".git" --exclude-dir="vendor"'
 alias grepjs='grep -Rn --exclude-dir=".git" --exclude-dir="node_modules" --exclude-dir="build" --exclude-dir="cache" --exclude="*-lock.*"'
 alias todo='grepr TODO'
+alias todiff='git diff dev -S "TODO:" --name-only'
 alias treer='tree -a -I vendor'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -185,4 +186,5 @@ export MY_TLD=localhost
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 source "$HOME/.cargo/env"

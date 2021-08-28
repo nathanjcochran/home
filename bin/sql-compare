@@ -1,5 +1,7 @@
 #!/bin/bash
 
+IMAGE="postgres:12.2"
+
 usage() {
     echo "Usage: ${0} <sourceConnection> <destinationConnection> <query>" >&2
     exit 2
@@ -29,4 +31,4 @@ fi
 
 FLAGS="--no-align --quiet --tuples-only"
 
-diff <(psql ${FLAGS} "${SRC}" -c "${QUERY}") <(psql ${FLAGS} "${DST}" -c "$QUERY")
+diff <(docker run --network=host "${IMAGE}" psql ${FLAGS} "${SRC}" -c "${QUERY}") <(docker run --network=host "${IMAGE}" psql ${FLAGS} "${DST}" -c "$QUERY")

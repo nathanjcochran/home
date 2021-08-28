@@ -1,7 +1,3 @@
-" Turn off compatibility mode (prevents errors related to line-continuation in
-" plugins)
-set nocompatible
-"
 " Status line always shows
 set laststatus=2
 
@@ -135,6 +131,7 @@ inoremap jj <ESC>
 autocmd FileType markdown :set tw=80
 autocmd FileType markdown :set spell
 
+
 " Vim-go configuration
 let g:go_fmt_command = "goimports"
 let g:go_addtags_transform="camelcase"
@@ -142,14 +139,26 @@ let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_rename_command = 'gopls'
 " let g:go_metalinter_autosave = 1
+" let g:go_highlight_extra_types = 1
 let g:go_highlight_functions = 1
 " let g:go_highlight_function_arguments = 1
+" let g:go_highlight_function_parameters = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_types = 1
 " let g:go_highlight_fields = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_contraints = 1
+let g:go_highlight_generate_tags = 1
 let g:go_highlight_extra_types = 1
+" let g:go_highlight_variable_declarations = 1
+" let g:go_highlight_variable_assignments = 1
+
+" Because goimports doesn't support the -s option, and gofmt doesn't support
+" imports, we run gofmt -w -s after goimports (less than ideal, but it works)
+:autocmd BufWritePost *.go silent execute "!gofmt -s -w <afile>" | redraw!
+
+" Turn on spellcheck in strings
+autocmd FileType go :set spell
 
 " Fix GoCoverage colors to work with solarized in the terminal
 hi def goCoverageCovered ctermfg=darkgreen guifg=#A6E22E
@@ -220,6 +229,13 @@ command WS %s/\s\+$//g
 
 " Insert a uuid under the cursor
 noremap <leader>u mu:r! uuidgen<return>daW`upjdd`u
+
+" Toggle argument wrapping
+" https://github.com/FooSoft/vim-argwrap#installation
+nnoremap <leader>w :ArgWrap<CR>
+
+" Add trailing comma when wrapping lines in Go files
+autocmd FileType go let b:argwrap_tail_comma = 1
 
 " Run doctoc on saving a README.md file
 :autocmd BufWritePost README.md silent execute "!doctoc <afile> &>/dev/null" | redraw!

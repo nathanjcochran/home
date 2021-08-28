@@ -15,4 +15,24 @@ _dev () {
     COMPREPLY=( $(compgen -d -- "$cur"))
 }
 
+ent() {
+    (cd "$HOME/src/github.com/nicheinc/development" && exec docker-compose run --rm postgres psql postgres://postgres:prowl3r@postgres:5432/entity -t -c "SELECT name, url, type, genus FROM entity WHERE uuid='$1'")
+}
+
+psql_local() {
+    (cd "$HOME/src/github.com/nicheinc/development" && \
+        docker-compose run --rm \
+            --volume="${HOME}/.pgpass:/home/.pgpass:ro" \
+            -e "PGPASSFILE=//home/.pgpass" \
+            postgres psql "postgres://postgres@postgres/$1")
+}
+
+psql_devvm() {
+    (cd "$HOME/src/github.com/nicheinc/development" && \
+        docker-compose run --rm \
+            --volume="${HOME}/.pgpass:/home/.pgpass:ro" \
+            -e "PGPASSFILE=//home/.pgpass" \
+            postgres psql "postgres://postgres@devvm-postgres/$1")
+}
+
 complete -F _dev dev
