@@ -41,33 +41,10 @@ printf "\n--------------------\n"
 sudo apt-get install tmux
 
 printf "\n--------------------\n"
-printf "Configuring git"
-printf "\n--------------------\n"
-echo -n "Please enter your name (for git config): "
-read name
-git config --global user.name "$name"
-echo -n "Please enter your email (for git config): "
-read email
-git config --global user.email "$email"
-git config --global core.editor "vim"		    # If you don't want vim, change this to your preferred editor
-git config --global credential.helper "cache"
-git config --global alias.co "checkout"     # If you don't want these git aliases, comment them out
-git config --global alias.b "branch"
-git config --global alias.st "status"
-git config --global alias.su "submodule update"
-git config --global alias.sur "submodule update --remote"
-git config --global alias.rso "remote show origin"
-git config --global alias.rpo "remote prune origin"
-git config --global alias.rao "remote add origin"
-git config --global alias.d "diff"
-git config --global alias.dc "diff --cached"
-git config --global alias.lg "log --all --decorate --oneline --graph"
-
-printf "\n--------------------\n"
 printf "Installing go"
 printf "\n--------------------\n"
-wget -P ~/Downloads https://dl.google.com/go/go1.12.2.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf ~/Downloads/go1.12.2.linux-amd64.tar.gz
+wget -P ~/Downloads https://dl.google.com/go/go1.16.3.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf ~/Downloads/go1.16.3.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin     # Not permament unless set in $HOME/.profile, but necessary for :GoInstallBinaries to work (see below)
 
 printf "\n--------------------\n"
@@ -178,7 +155,7 @@ printf "\n--------------------\n"
 printf "Installing docker-compose"
 printf "\n--------------------\n"
 # See: https://docs.docker.com/compose/install/#install-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
+sudo curl -L https://github.com/docker/compose/releases/download/1.28.6/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
 sudo chmod +x /usr/local/bin/docker-compose
 
 # printf "\n--------------------\n"
@@ -310,8 +287,8 @@ printf "\n--------------------\n"
 git clone --recurse-submodules https://github.com/nicheinc/development ~/src/github.com/nicheinc/development/
 
 # Create symbolic links in home directory to niche and development directories
-ln -s ~/src/github.com/nicheinc
-ln -s ~/src/github.com/nicheinc/development
+#ln -s ~/src/github.com/nicheinc
+#ln -s ~/src/github.com/nicheinc/development
 
 #printf "\n--------------------\n"
 #printf "Installing nvm"
@@ -336,28 +313,33 @@ ln -s ~/src/github.com/nicheinc/development
 #printf "\n--------------------\n"
 #npm install -g doctoc
 
-if [ ! -f ~/.ssh/id_rsa ]; then
-	# See: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
-    # NOTE: If you have multiple github accounts, and you want to use ssh for both of them,
-    # you will have to run the following commnds twice, creating two different ssh keys. See
-    # my .gitconfig and .ssh/config to see how to correctly configure the rest from there.
-	printf "Generating ssh key required for github.com/nicheinc dependencies\n"
-	ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/id_rsa -N ''
-	eval "$(ssh-agent -s)"
-	ssh-add ~/.ssh/id_rsa
-	sudo apt-get install xclip
-	xclip -sel clip < ~/.ssh/id_rsa.pub
-    firefox https://github.com/settings/keys
-	printf "\n--------------------\n"
-	printf "NOTE: Please log in to github.com, click 'New SSH Key', and paste into the 'Key' textbox (the ssh key has already been copied to your clipboard)\n"
-	printf "NOTE: You may give the key any descriptive name you want (e.g. niche-linux)\n"
-	printf "NOTE: Once finished, press [Enter] to continue"
-	read -s
-fi
+printf "\n--------------------\n"
+printf "Installing xclip"
+printf "\n--------------------\n"
+sudo apt-get install xclip
+
+#if [ ! -f ~/.ssh/id_rsa ]; then
+#	# See: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+#    # NOTE: If you have multiple github accounts, and you want to use ssh for both of them,
+#    # you will have to run the following commnds twice, creating two different ssh keys. See
+#    # my .gitconfig and .ssh/config to see how to correctly configure the rest from there.
+#	printf "Generating ssh key required for github.com/nicheinc dependencies\n"
+#	ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/id_rsa -N ''
+#	eval "$(ssh-agent -s)"
+#	ssh-add ~/.ssh/id_rsa
+#	sudo apt-get install xclip
+#	xclip -sel clip < ~/.ssh/id_rsa.pub
+#    firefox https://github.com/settings/keys
+#	printf "\n--------------------\n"
+#	printf "NOTE: Please log in to github.com, click 'New SSH Key', and paste into the 'Key' textbox (the ssh key has already been copied to your clipboard)\n"
+#	printf "NOTE: You may give the key any descriptive name you want (e.g. niche-linux)\n"
+#	printf "NOTE: Once finished, press [Enter] to continue"
+#	read -s
+#fi
 
 # Use ssh instead of https by default
-git config --global url.ssh://git@github.com/.insteadOf https://github.com/
-git config --global url.ssh://git@gitlab.com/.insteadOf https://gitlab.com/
+#git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+#git config --global url.ssh://git@gitlab.com/.insteadOf https://gitlab.com/
 
 # This can sometimes have unintended side-effects
 #printf "\n--------------------\n"
@@ -365,7 +347,7 @@ git config --global url.ssh://git@gitlab.com/.insteadOf https://gitlab.com/
 #printf "\n--------------------\n"
 # sudo apt-get autoremove
 
-printf "\n--------------------\n"
-printf "Creating $HOME/bin directory"
-printf "\n--------------------\n"
-mkdir ~/bin
+#printf "\n--------------------\n"
+#printf "Creating $HOME/bin directory"
+#printf "\n--------------------\n"
+#mkdir ~/bin
