@@ -36,6 +36,11 @@ sudo apt-get update
 sudo apt-get install git-all
 
 printf "\n--------------------\n"
+printf "Installing make"
+printf "\n--------------------\n"
+sudo apt-get install make
+
+printf "\n--------------------\n"
 printf "Installing tmux"
 printf "\n--------------------\n"
 sudo apt-get install tmux
@@ -83,6 +88,7 @@ cd gnome-terminal-colors-solarized
 ./install.sh -s dark --install-dircolors    # This will walk the user through the process, and they can abort if they want to
 mv ~/.dir_colors/dircolors ~/.dircolors     # See note at bottom: https://github.com/seebi/dircolors-solarized#general-instructions
 rm -r ~/.dir_colors
+cd ~
 
 # vim +TmuxlineSnapshot\!\ .tmuxline.conf +qall     # Only necessary if not pulling down existing .tmuxline.conf
 
@@ -91,6 +97,7 @@ printf "Installing network-manager-l2tp"
 printf "\n--------------------\n"
 sudo apt install network-manager-l2tp network-manager-l2tp-gnome resolvconf
 sudo systemctl restart network-manager
+sudo systemctl disable xl2tpd
 
 #printf "\n--------------------\n"
 #printf "Installing postgreSQL"
@@ -155,7 +162,7 @@ printf "\n--------------------\n"
 printf "Installing docker-compose"
 printf "\n--------------------\n"
 # See: https://docs.docker.com/compose/install/#install-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.28.6/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
+sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
 sudo chmod +x /usr/local/bin/docker-compose
 
 # printf "\n--------------------\n"
@@ -193,13 +200,13 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 printf "\n--------------------\n"
 printf "Installing slack"
 printf "\n--------------------\n"
-wget -P ~/Downloads https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.deb # May need to update version number (visit slack download page to find it)
-sudo apt-get install ~/Downloads/slack-desktop-3.3.8-amd64.deb
+wget -P ~/Downloads https://downloads.slack-edge.com/linux_releases/slack-desktop-4.19.2-amd64.deb # May need to update version number (visit slack download page to find it)
+sudo apt-get install ~/Downloads/slack-desktop-4.19.2-amd64.deb
 
 printf "\n--------------------\n"
 printf "Installing spotify"
 printf "\n--------------------\n"
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 line='deb http://repository.spotify.com stable non-free'
 file='/etc/apt/sources.list.d/spotify.list'
 grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
