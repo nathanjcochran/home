@@ -85,12 +85,22 @@ set background=dark
 let g:solarized_termtrans=1
 colorscheme solarized
 
+" Make line number/sign column background transparent
+highlight LineNr ctermbg=NONE
+highlight SignColumn ctermbg=NONE
+
 " Highlight the current line
 set cursorline
 
-" Underline instead of highlight
-" hi clear cursorline
-" hi cursorline gui=underline cterm=underline
+" Underline cursorline instead of highlight
+" highlight clear cursorline
+" highlight cursorline gui=underline cterm=underline
+
+" Don't underline the line number at cursor line
+highlight CursorLineNr cterm=NONE
+
+" Change background column of line number at cursor line
+" highlight CursorLineNr ctermbg=0
 
 " Statusline theme:
 " https://github.com/vim-airline/vim-airline-themes
