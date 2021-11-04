@@ -24,7 +24,7 @@ psql_local() {
         docker-compose run --rm \
             --volume="${HOME}/.pgpass:/home/.pgpass:ro" \
             -e "PGPASSFILE=//home/.pgpass" \
-            postgres psql "postgres://postgres@postgres/$1")
+            postgres psql "postgres://postgres@postgres/$1" "${@:2}")
 }
 
 psql_devvm() {
@@ -32,7 +32,7 @@ psql_devvm() {
         docker-compose run --rm \
             --volume="${HOME}/.pgpass:/home/.pgpass:ro" \
             -e "PGPASSFILE=//home/.pgpass" \
-            postgres psql "postgres://postgres@devvm-postgres/$1")
+            postgres psql "postgres://postgres@devvm-postgres/$1" "${@:2}")
 }
 
 complete -F _dev dev
