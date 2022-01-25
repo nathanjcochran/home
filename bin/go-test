@@ -3,10 +3,10 @@ clear
 echo "Installing..."
 if go install $@; then
     echo "Vetting..."
-    if go vet $@; then
-        echo "Testing..."
-        go test $@
-    fi
+    go vet $@
+
+    echo "Testing..."
+    go test $@
 fi
 
 inotifywait -e close_write,move,create,delete -m -r -q . |
@@ -21,9 +21,9 @@ while read; do
     echo "Installing..."
     if go install $@; then
         echo "Vetting..."
-        if go vet $@; then
-            echo "Testing..."
-            go test $@
-        fi
+        go vet $@
+
+        echo "Testing..."
+        go test $@
     fi
 done
