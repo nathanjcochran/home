@@ -6,7 +6,7 @@ if go install $@; then
     go vet $@
 
     echo "Testing..."
-    go test $@
+    go test -race $@
 fi
 
 inotifywait -e close_write,move,create,delete -m -r -q . |
@@ -24,6 +24,6 @@ while read; do
         go vet $@
 
         echo "Testing..."
-        go test $@
+        go test -race $@
     fi
 done
