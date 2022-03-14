@@ -2,6 +2,9 @@
 clear
 echo "Installing..."
 if go install $@; then
+    echo "Vetting..."
+    go vet $@
+
     echo "Testing..."
     go test -race $@
 fi
@@ -17,6 +20,9 @@ while read; do
     clear
     echo "Installing..."
     if go install $@; then
+        echo "Vetting..."
+        go vet $@
+
         echo "Testing..."
         go test -race $@
     fi
