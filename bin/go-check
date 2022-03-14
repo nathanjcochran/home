@@ -5,6 +5,9 @@ if go install $@; then
     echo "Vetting..."
     go vet $@
 
+    echo "Linting..."
+    staticcheck $@
+
     echo "Testing..."
     go test -race $@
 fi
@@ -22,6 +25,9 @@ while read; do
     if go install $@; then
         echo "Vetting..."
         go vet $@
+
+        echo "Linting..."
+        staticcheck $@
 
         echo "Testing..."
         go test -race $@
