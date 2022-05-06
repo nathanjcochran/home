@@ -17,8 +17,8 @@ set hlsearch
 " Enter key clears highlighted search terms
 nnoremap <silent> <return> :noh<return><return>
 
-" More memory for syntax parsing in large files
-set maxmempattern=5000
+" More memory/time for syntax parsing in large files
+set maxmempattern=10000
 
 " Use old regular expression engine, which appears
 " to be faster for Go syntax highlighting
