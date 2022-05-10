@@ -144,6 +144,16 @@ printf "\n--------------------\n"
 wget -P ~/Downloads https://dbeaver.jkiss.org/files/dbeaver-ce_latest_amd64.deb # May need to update at some point (visit dbeaver download page to find link)
 sudo apt-get install ~/Downloads/dbeaver-ce_latest_amd64.deb
 
+# See: https://www.ubuntuupdates.org/ppa/postgresql
+printf "\n--------------------\n"
+printf "Installing pgformatter"
+printf "\n--------------------\n"
+sudo apt install curl ca-certificates gnupg
+curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main" >> /etc/apt/sources.list.d/postgresql.list'
+sudo apt-get update 
+sudo apt-get install pgformatter
+
 printf "\n--------------------\n"
 printf "Installing docker"
 printf "\n--------------------\n"
@@ -236,10 +246,10 @@ printf "Installing inotify-tools"
 printf "\n--------------------\n"
 sudo apt-get install inotify-tools
 
-printf "\n--------------------\n"
-printf "Installing hub"
-printf "\n--------------------\n"
-go get -u github.com/github/hub
+# printf "\n--------------------\n"
+# printf "Installing hub"
+# printf "\n--------------------\n"
+# go get -u github.com/github/hub
 
 #printf "\n--------------------\n"
 #printf "Installing rvm and ruby 2.3.4"
