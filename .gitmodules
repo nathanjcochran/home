@@ -55,3 +55,6 @@
 [submodule ".vim/pack/plugins/start/vim-argwrap"]
 	path = .vim/pack/plugins/start/vim-argwrap
 	url = ssh://git@github.com/FooSoft/vim-argwrap
+[submodule ".vim/pack/plugins/start/vim-rhubarb"]
+	path = .vim/pack/plugins/start/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb
