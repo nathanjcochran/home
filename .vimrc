@@ -145,7 +145,6 @@ inoremap jj <ESC>
 autocmd FileType markdown :set tw=80
 autocmd FileType markdown :set spell
 
-
 " Vim-go configuration
 let g:go_fmt_command = "goimports"
 let g:go_addtags_transform="camelcase"
@@ -250,6 +249,12 @@ nnoremap <leader>w :ArgWrap<CR>
 
 " Add trailing comma when wrapping lines in Go files
 autocmd FileType go let b:argwrap_tail_comma = 1
+
+" Format SQL files with pg_format
+au FileType sql setl formatprg=/usr/bin/pg_format\ --no-extra-line\ --type-case=2\ -
+
+" Format highlighted text with pg_format
+vmap <leader>q :! pg_format --no-extra-line --type-case=2<CR>
 
 " Run doctoc on saving a README.md file
 :autocmd BufWritePost README.md silent execute "!doctoc <afile> &>/dev/null" | redraw!
