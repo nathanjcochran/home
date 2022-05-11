@@ -237,6 +237,12 @@ highlight! link SignColumn LineNr
 " Make gitgutter sign column always show, to prevent screen jumping effect
 " set signcolumn=yes
 
+" Create GitHub permalink to current file and copy to clipboard
+nnoremap <leader>l :0:GBrowse!<return><return>
+
+" Create GitHub permalink to currently highlighted lines and copy to clipboard
+vnoremap <leader>l :GBrowse!<return><return>
+
 " Command for clearing trailing whitespace
 command WS %s/\s\+$//g
 
@@ -254,7 +260,7 @@ autocmd FileType go let b:argwrap_tail_comma = 1
 au FileType sql setl formatprg=/usr/bin/pg_format\ --no-extra-line\ --type-case=2\ -
 
 " Format highlighted text with pg_format
-vmap <leader>q :! pg_format --no-extra-line --type-case=2<CR>
+vnoremap <leader>q :! pg_format --no-extra-line --type-case=2<CR>
 
 " Run doctoc on saving a README.md file
 :autocmd BufWritePost README.md silent execute "!doctoc <afile> &>/dev/null" | redraw!
