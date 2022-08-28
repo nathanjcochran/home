@@ -8,10 +8,16 @@ case $- in
       *) return;;
 esac
 
-# Start tmux, if not already in tmux:
-if [ -z "$TMUX" ]; then
-    exec tmux new-session -A -s $USER
+# Start tmux if it exists and we're not already in tmux. Use homebrew
+# version, if it exists (homebrew is not yet added to the $PATH here)
+tmux_cmd="tmux"
+if [ -x "/opt/homebrew/bin/tmux" ]; then
+    tmux_cmd="/opt/homebrew/bin/tmux"
 fi
+if command -v "${tmux_cmd}" &> /dev/null && [ -z "${TMUX}" ]; then
+    exec "${tmux_cmd}" new-session -A -s "${USER}"
+fi
+unset tmux_cmd
 
 # vi mode ftw
 # set -o vi
@@ -47,7 +53,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
+case "${TERM}" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
@@ -56,7 +62,7 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
+if [ -n "${force_color_prompt}" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
@@ -78,38 +84,38 @@ GIT_PS1_DESCRIBE_STYLE="branch" # when detached head, shows commit relative to n
 GIT_PS1_HIDE_IF_PWD_IGNORED=true # do nothing if current directory ignored by git
 
 PROMPT_DIRTRIM=3
-if [ "$color_prompt" = yes ]; then
+if [ "${color_prompt}" = yes ]; then
     GIT_PS1_SHOWCOLORHINTS=true # dirty state and untracked file indicators are color-coded
     if [[ ${EUID} == 0 ]] ; then
-        PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \w\[\033[00m\]'
+        pre_prompt='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \w\[\033[00m\]'
         #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     else
-        PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]'
+        pre_prompt='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]'
         #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     fi
-    POST_PROMPT_COMMAND='\n\$\[\033[00m\] '
+    post_prompt='\n\$\[\033[00m\] '
 else
-    PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\u@\h \w'
-    POST_PROMPT_COMMAND='\n\$ '
+    pre_prompt='${debian_chroot:+($debian_chroot)}\u@\h \w'
+    post_prompt='\n\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h \w$(__git_ps1 " (%s)")\n\$ '
 fi
 unset color_prompt force_color_prompt
 
-ERROR_CODE_COMMAND='\[\033[01;31m\]$(RESULT=$?; if (( RESULT != 0 )); then echo " ERROR: $RESULT"; fi)\[\033[01;34m\]'
-POST_PROMPT_COMMAND="$ERROR_CODE_COMMAND$POST_PROMPT_COMMAND"
+error_code='\[\033[01;31m\]$(result=$?; if (( result != 0 )); then echo " ERROR: $result"; fi)\[\033[01;34m\]'
+post_prompt="${error_code}${post_prompt}"
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
+case "${TERM}" in
 xterm*|rxvt*|screen*)
-    TITLE_COMMAND='\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]'
-    PRE_PROMPT_COMMAND="$TITLE_COMMAND$PRE_PROMPT_COMMAND"
+    title='\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]'
+    pre_prompt="${title}${pre_prompt}"
     ;;
 *)
     ;;
 esac
 
-PROMPT_COMMAND="__git_ps1 '$PRE_PROMPT_COMMAND' '$POST_PROMPT_COMMAND'"
-unset PRE_PROMPT_COMMAND POST_PROMPT_COMMAND
+PROMPT_COMMAND="__git_ps1 '${pre_prompt}' '${post_prompt}'"
+unset pre_prompt post_prompt error_code title
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -143,25 +149,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# Add pip install dir to path
-export PATH="$HOME/.local/bin:$PATH"
-
-# set up go env variables:
-export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
-
-export CDPATH="$CDPATH:$HOME/links"
-
-export PGUSER="ncochran"
-
-export MY_TLD=localhost
-
-export DOCKER_BUILDKIT=1
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[ -s $HOME/.cargo/env ] && source "$HOME/.cargo/env"
-
-true
