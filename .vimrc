@@ -71,7 +71,7 @@ nnoremap j gj
 nnoremap k gk
 
 " Use the computer's default clipboard (windows should use unnamed)
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 
 " Make sure clipboard contents aren't cleared on exit
 autocmd VimLeave * call system('echo ' . shellescape(getreg('+')) . ' | xclip -selection clipboard')
