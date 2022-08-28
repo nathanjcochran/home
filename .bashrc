@@ -68,7 +68,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # For git info in terminal prompt. See: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-# source ~/.git-prompt.sh
+[ -s ~/.git-prompt.sh ] && source ~/.git-prompt.sh
+[ -s /opt/homebrew/opt/git/etc/bash_completion.d/git-prompt.sh ] && source /opt/homebrew/opt/git/etc/bash_completion.d/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true # unstaged changes *, staged changed +
 GIT_PS1_SHOWSTASHSTATE=true # stashed changes $
 GIT_PS1_SHOWUNTRACKEDFILES=true # untracked files %
@@ -125,40 +126,12 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='LC_COLLATE=C ls -AlhXF --g'
-alias la='LC_COLLATE=C ls -A'
-alias l='LC_COLLATE=C ls -CF'
-alias l1='LC_COLLATE=C ls -1XF --g'
-
-# other aliases
-alias j='jobs'
-alias kj='kill $(jobs -p)'
-alias postman='postman &> /dev/null'
-alias dc='docker-compose'
-alias grepr='grep -Rn --exclude-dir=".git" --exclude-dir="vendor" --exclude-dir="node_modules"'
-alias grepgo='grep -Rn --exclude-dir=".git" --exclude-dir="vendor"'
-alias grepjs='grep -Rn --exclude-dir=".git" --exclude-dir="node_modules" --exclude-dir="build" --exclude-dir="cache" --exclude="*-lock.*"'
-alias todo='grepr TODO'
-alias todiff='git diff dev -S "TODO:" --name-only'
-alias treer='tree -a -I vendor'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-if [ -f ~/.bash_funcs ]; then
-    . ~/.bash_funcs
-fi
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.bash_funcs ] && source ~/.bash_funcs
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -189,4 +162,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source "$HOME/.cargo/env"
+[ -s $HOME/.cargo/env ] && source "$HOME/.cargo/env"
+
+true
