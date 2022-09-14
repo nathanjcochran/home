@@ -19,6 +19,24 @@ if command -v "${tmux_cmd}" &> /dev/null && [ -z "${TMUX}" ]; then
 fi
 unset tmux_cmd
 
+
+# On Mac, add GNU coreutils to PATH. Do this in .bashrc instead of .profile do
+# it only takes effect for interactive shells (i.e. not for scripts, which
+# might be Mac-specific). Must happen before dircolors script below.
+if [ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ]; then
+    export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+fi
+if [ -d "/opt/homebrew/opt/grep/libexec/gnubin" ]; then
+    export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+fi
+if [ -d "/opt/homebrew/opt/gnu-sed/libexec/gnubin" ]; then
+    export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
+if [ -d "/opt/homebrew/opt/findutils/libexec/gnubin" ]; then
+    export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+fi
+
+
 # vi mode ftw
 # set -o vi
 
@@ -118,7 +136,7 @@ PROMPT_COMMAND="__git_ps1 '${pre_prompt}' '${post_prompt}'"
 unset pre_prompt post_prompt error_code title
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [ -x /usr/bin/dircolors ] || [ -x /opt/homebrew/opt/coreutils/libexec/gnubin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
@@ -149,3 +167,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+[ -f ~/.popsql_env ] && source ~/.popsql_env
