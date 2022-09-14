@@ -1,7 +1,9 @@
 #!/bin/bash
 
+dev_dir="$HOME/dev/popsql/popsql-localdev"
+
 dev () {
-    cd "$HOME/src/github.com/nicheinc/development/$1"
+    cd "${dev_dir}/${1}"
     clear
 }
 
@@ -10,7 +12,7 @@ _dev () {
     if [[ $cur = /* ]] || [[ $cur = ~* ]]; then
         return
     fi
-    cd "$HOME/src/github.com/nicheinc/development"
+    cd "${dev_dir}"
     compopt -o filenames 2>/dev/null
     COMPREPLY=( $(compgen -d -- "$cur"))
 }
