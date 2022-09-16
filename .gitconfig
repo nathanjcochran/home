@@ -1,6 +1,6 @@
 [user]
     name = Nathaniel J Cochran
-    email = nathanjcochran@gmail.com
+    email = nathan@popsql.com
 [url "ssh://git@github.com"]
     insteadOf = https://github.com
 [url "ssh://git@gitlab.com"]
@@ -33,3 +33,5 @@
     prune = true
 [diff]
     colorMoved = zebra
+[core]
+	excludesFile = ~/.gitignore-global
