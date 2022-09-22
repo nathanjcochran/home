@@ -19,7 +19,7 @@ _dev () {
 
 complete -F _dev dev
 
-pop_dir="$HOME/dev/popsql/popsql/packages"
+pop_dir="$HOME/dev/popsql/popsql"
 
 pop () {
     cd "${pop_dir}/${1}"
@@ -33,7 +33,7 @@ _pop () {
     fi
     cd "${pop_dir}"
     compopt -o filenames 2>/dev/null
-    COMPREPLY=( $(compgen -d -- "popsql-$cur"))
+    COMPREPLY=( $(compgen -d -- "packages/popsql-$cur"))
 }
 
 complete -F _pop pop
