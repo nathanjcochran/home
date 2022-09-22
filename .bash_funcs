@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dev_dir="$HOME/dev/popsql/popsql-localdev"
+dev_dir="$HOME/dev/popsql"
 
 dev () {
     cd "${dev_dir}/${1}"
@@ -16,6 +16,27 @@ _dev () {
     compopt -o filenames 2>/dev/null
     COMPREPLY=( $(compgen -d -- "$cur"))
 }
+
+complete -F _dev dev
+
+pop_dir="$HOME/dev/popsql/popsql/packages"
+
+pop () {
+    cd "${pop_dir}/${1}"
+    clear
+}
+
+_pop () {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    if [[ $cur = /* ]] || [[ $cur = ~* ]]; then
+        return
+    fi
+    cd "${pop_dir}"
+    compopt -o filenames 2>/dev/null
+    COMPREPLY=( $(compgen -d -- "popsql-$cur"))
+}
+
+complete -F _pop pop
 
 ent() {
     (cd "$HOME/src/github.com/nicheinc/development" && exec docker-compose run --rm postgres psql postgres://postgres:prowl3r@postgres:5432/entity -t -c "SELECT name, url, type, genus FROM entity WHERE uuid='$1'")
@@ -36,5 +57,3 @@ psql_devvm() {
             -e "PGPASSFILE=//home/.pgpass" \
             postgres psql "postgres://postgres@devvm-postgres/$1" "${@:2}")
 }
-
-complete -F _dev dev
