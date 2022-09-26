@@ -24,3 +24,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias gbds='git fetch -p && git branch -D $(git branch -vv | grep ": gone]" | awk "{print \$1}")'
 # git branch list squashed
 alias gbls='git fetch -p && git branch -vv | grep ": gone]" | awk "{print \$1}"'
+
+# Terraform
+alias tf='terraform'
