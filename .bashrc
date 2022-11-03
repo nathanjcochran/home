@@ -14,7 +14,10 @@ tmux_cmd="tmux"
 if [ -x "/opt/homebrew/bin/tmux" ]; then
     tmux_cmd="/opt/homebrew/bin/tmux"
 fi
-if command -v "${tmux_cmd}" &> /dev/null && [ -z "${TMUX}" ]; then
+if command -v "${tmux_cmd}" &> /dev/null \
+    && [ -z "${TMUX}" ] \
+    && [ "${TERM_PROGRAM}" != "vscode" ] \
+    && [ -z "${VSCODE_CWD}" ]; then
     exec "${tmux_cmd}" new-session -A -s "${USER}"
 fi
 unset tmux_cmd
