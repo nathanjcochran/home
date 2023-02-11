@@ -37,6 +37,10 @@ autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+" Format with prettier
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+
 " Make backspace key work
 set backspace=indent,eol,start
 
