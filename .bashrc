@@ -38,6 +38,9 @@ fi
 if [ -d "/opt/homebrew/opt/findutils/libexec/gnubin" ]; then
     export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 fi
+if [ -d "/opt/homebrew/opt/postgresql@13/bin" ]; then
+    export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"
+fi
 
 
 # vi mode ftw

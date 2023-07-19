@@ -25,9 +25,13 @@ if [ -d "${HOME}/.local/bin" ] ; then
     export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
-# Initialize homebrew env vars (must happen before .bashrc
-# is called so the homebrew version of tmux is used)
+# Initialize homebrew env vars
 [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Enable git completion on Mac (via brew install git bash-completion)
+# TODO: Use bash-completion@2 instead - need to figure out why that
+# breaks vim completion
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # Add pip install dir to path
 export PATH="${HOME}/.local/bin:${PATH}"
@@ -48,3 +52,8 @@ export CDPATH="${CDPATH}:${HOME}/links"
 export PGUSER="ncochran"
 export MY_TLD=localhost
 export DOCKER_BUILDKIT=1
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

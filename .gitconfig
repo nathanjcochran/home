@@ -35,3 +35,5 @@
     colorMoved = zebra
 [core]
 	excludesFile = ~/.gitignore-global
+[init]
+	defaultBranch = main
