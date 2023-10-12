@@ -14,7 +14,7 @@ _dev () {
     fi
     cd "${dev_dir}"
     compopt -o filenames 2>/dev/null
-    COMPREPLY=( $(compgen -d -- "$cur"))
+    COMPREPLY=( $(compgen -d -- "$cur") $(compgen -d -- "popsql-$cur") )
 }
 
 complete -F _dev dev
@@ -56,4 +56,10 @@ psql_devvm() {
             --volume="${HOME}/.pgpass:/home/.pgpass:ro" \
             -e "PGPASSFILE=//home/.pgpass" \
             postgres psql "postgres://postgres@devvm-postgres/$1" "${@:2}")
+}
+
+fix_dbt_keys() {
+    pushd "$HOME/dev/popsql/popsql/.docker/dbt/30000/keys"
+    cp "$HOME"/dbt-keys/* ./
+    popd
 }
