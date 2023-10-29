@@ -1,0 +1,31 @@
+{
+  "workbench.colorTheme": "Solarized Dark",
+  "editor.formatOnSave": true,
+  "editor.minimap.showSlider": "always",
+  "editor.renderWhitespace": "boundary",
+  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "vim.vimrc.enable": true,
+  "vim.hlsearch": true,
+  "vim.ignorecase": false,
+  "vim.surround": true,
+  "vim.targets.enable": true,
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-p>"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "l"],
+      "commands": ["gitlens.copyRemoteFileUrlToClipboard"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "l"],
+      "commands": ["gitlens.copyRemoteFileUrlToClipboard"]
+    }
+  ],
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}
