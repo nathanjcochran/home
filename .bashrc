@@ -175,3 +175,5 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.popsql_env ] && source ~/.popsql_env
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

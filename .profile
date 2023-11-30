@@ -26,12 +26,28 @@ if [ -d "${HOME}/.local/bin" ] ; then
 fi
 
 # Initialize homebrew env vars
+# # NOTE: Must come after sourcing .bashrc, or can get duplicate PATH entries from tmux
 [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Enable git completion on Mac (via brew install git bash-completion)
+# Enable git completion on Mac (via brew install git bash-completion).
+# NOTE: This depends on brew, which is why it's here and not in .bashrc.
 # TODO: Use bash-completion@2 instead - need to figure out why that
 # breaks vim completion
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
+# Initialize fzf
+# NOTE: This must come after bash completion script above
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#  Use ripgrep for fzf command (if installed)
+if command -v "rg" &> /dev/null;  then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+    export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+
+    _fzf_compgen_path() {
+        rg --files --hidden "$1"
+    }
+fi
 
 # Add pip install dir to path
 export PATH="${HOME}/.local/bin:${PATH}"
