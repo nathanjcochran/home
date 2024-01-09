@@ -38,6 +38,7 @@ fi
 # Initialize fzf
 # NOTE: This must come after bash completion script above
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
 
 #  Use ripgrep for fzf command (if installed)
 if command -v "rg" &> /dev/null;  then
@@ -45,7 +46,11 @@ if command -v "rg" &> /dev/null;  then
     export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 
     _fzf_compgen_path() {
-        rg --files --hidden "$1"
+        rg --files --hidden "${1}"
+    }
+
+    _fzf_compgen_dir() {
+        rg --hidden --files --null "${1}" | xargs -0 dirname | uniq
     }
 fi
 
