@@ -1,0 +1,90 @@
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "30GB",
+      "enabled": true,
+      "policy": [
+        {
+          "filter": [
+            "type=source.git.checkout",
+            "unused-for=720h"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "type=source.local",
+            "unused-for=720h"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "type=regular",
+            "unused-for=720h"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "unused-for=720h"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "type=source.git.checkout",
+            "unused-for=48h"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "type=source.local",
+            "unused-for=48h"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "type=regular",
+            "unused-for=48h"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "unused-for=48h"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "type=source.git.checkout"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "type=source.local"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "filter": [
+            "type=regular"
+          ],
+          "keepStorage": "30GB"
+        },
+        {
+          "keepStorage": "30GB"
+        },
+        {
+          "all": true,
+          "keepStorage": "30GB"
+        }
+      ]
+    }
+  },
+  "experimental": false
+}
