@@ -14,7 +14,7 @@ _dev () {
     fi
     cd "${dev_dir}"
     compopt -o filenames 2>/dev/null
-    COMPREPLY=( $(compgen -d -- "$cur") $(compgen -d -- "popsql-$cur") )
+    COMPREPLY=( $(compgen -d -- "$cur") $(compgen -d -- "popsql-$cur") $(compgen -d -- "savannah-$cur") )
 }
 
 complete -F _dev dev
