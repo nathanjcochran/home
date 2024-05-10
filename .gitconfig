@@ -1,6 +1,6 @@
 [user]
-    name = Nathaniel J Cochran
-    email = nathan@popsql.com
+    name = Nathan Cochran
+    email = nathan@timescale.com
 [url "ssh://git@github.com"]
     insteadOf = https://github.com
 [url "ssh://git@gitlab.com"]
