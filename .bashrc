@@ -23,7 +23,7 @@ fi
 unset tmux_cmd
 
 
-# On Mac, add GNU coreutils to PATH. Do this in .bashrc instead of .profile do
+# On Mac, add GNU coreutils to PATH. Do this in .bashrc instead of .profile so
 # it only takes effect for interactive shells (i.e. not for scripts, which
 # might be Mac-specific). Must happen before dircolors script below.
 if [ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ]; then
