@@ -31,14 +31,13 @@ fi
 
 # Enable git completion on Mac (via brew install git bash-completion).
 # NOTE: This depends on brew, which is why it's here and not in .bashrc.
-# TODO: Use bash-completion@2 instead - need to figure out why that
-# breaks vim completion
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # Initialize fzf
 # NOTE: This must come after bash completion script above
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
+if command -v "fzf" &> /dev/null; then
+    eval "$(fzf --bash)"
+fi
 
 #  Use ripgrep for fzf command (if installed)
 if command -v "rg" &> /dev/null;  then
@@ -62,11 +61,17 @@ export PATH="/usr/local/go/bin:${HOME}/go/bin:${PATH}"
 
 # Initialize nvm
 export NVM_DIR="${HOME}/.nvm"
-[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
-[ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
+if [ -s "${NVM_DIR}/nvm.sh" ] ; then
+    \. "${NVM_DIR}/nvm.sh"  # This loads nvm
+fi
+if [ -s "${NVM_DIR}/bash_completion" ] ; then
+    \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
+fi
 
 # Initialize cargo
-[ -s "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
+if [ -s "${HOME}/.cargo/env" ] ; then
+    source "${HOME}/.cargo/env"
+fi
 
 # Other environment variables
 export CDPATH="${CDPATH}:${HOME}/links"
@@ -77,4 +82,7 @@ export DOCKER_BUILDKIT=1
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Initialize vm
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+    source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+fi
