@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dev_dir="$HOME/dev/timescale"
+dev_dir="${HOME}/src/github.com/timescale"
 
 dev () {
     cd "${dev_dir}/${1}"
@@ -19,7 +19,7 @@ _dev () {
 
 complete -F _dev dev
 
-pop_dir="$HOME/dev/timescale/popsql"
+pop_dir="${dev_dir}/popsql"
 
 pop () {
     cd "${pop_dir}/${1}"
@@ -39,7 +39,7 @@ _pop () {
 complete -F _pop pop
 
 fix_dbt_keys() {
-    pushd "$HOME/dev/popsql/popsql/.docker/dbt/30000/keys"
+    pushd "${pop_dir}/.docker/dbt/30000/keys"
     cp "$HOME"/dbt-keys/* ./
     popd
 }

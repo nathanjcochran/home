@@ -6,6 +6,9 @@
 # Install dependencies from Brewfile
 brew bundle install
 
+# Start colima on login
+brew services start colima
+
 # Change default shell to bash
 echo "/opt/homebrew/bin/bash" | sudo tee -a /etc/shells > /dev/null
 chsh -s /opt/homebrew/bin/bash
