@@ -26,12 +26,16 @@ if [ -d "${HOME}/.local/bin" ] ; then
 fi
 
 # Initialize homebrew env vars
-# # NOTE: Must come after sourcing .bashrc, or can get duplicate PATH entries from tmux
-[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+# NOTE: Must come after sourcing .bashrc, or can get duplicate PATH entries from tmux
+if [ -x /opt/homebrew/bin/brew ] ; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Enable git completion on Mac (via brew install git bash-completion).
 # NOTE: This depends on brew, which is why it's here and not in .bashrc.
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] ; then
+    . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+fi
 
 # Initialize fzf
 # NOTE: This must come after bash completion script above
@@ -82,7 +86,7 @@ export DOCKER_BUILDKIT=1
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# Initialize vm
+# Initialize rvm
 if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
     source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 fi
