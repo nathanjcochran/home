@@ -13,8 +13,6 @@
     "/Users/nathan",
     "nathan"
   ],
-  "ruby.intellisense": "rubyLocate",
-  "ruby.useLanguageServer": true,
   "terminal.integrated.defaultProfile.osx": "bash (2)",
   "terminal.integrated.profiles.osx": {
     "bash": {
