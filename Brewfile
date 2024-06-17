@@ -24,3 +24,5 @@ cask "firefox"
 cask "slack"
 cask "spotify"
 cask "visual-studio-code"
+
+vscode "vscodevim.vim"
