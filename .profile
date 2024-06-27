@@ -72,6 +72,11 @@ if [ -s "${NVM_DIR}/bash_completion" ] ; then
     \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
 fi
 
+# Initialize fnm
+if command -v "fnm" &> /dev/null; then
+    eval "$(fnm env --use-on-cd)"
+fi
+
 # Initialize cargo
 if [ -s "${HOME}/.cargo/env" ] ; then
     source "${HOME}/.cargo/env"
