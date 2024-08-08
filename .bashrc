@@ -175,3 +175,4 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.popsql_env ] && source ~/.popsql_env
+[ -f ~/.timescale_env ] && source ~/.timescale_env
