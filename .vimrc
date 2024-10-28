@@ -18,11 +18,11 @@ set hlsearch
 nnoremap <silent> <return> :noh<return><return>
 
 " More memory/time for syntax parsing in large files
-set maxmempattern=10000
+set maxmempattern=25000
 
 " Use old regular expression engine, which appears
 " to be faster for Go syntax highlighting
-set re=1
+" set re=1
 
 " Tabs and indentation
 set autoindent
