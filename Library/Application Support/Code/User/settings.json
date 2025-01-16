@@ -1,7 +1,15 @@
 {
   "diffEditor.ignoreTrimWhitespace": true,
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.codeActionsOnSave": []
+  },
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.formatOnSave": true,
   "editor.minimap.showSlider": "always",
   "editor.renderWhitespace": "boundary",
@@ -60,7 +68,6 @@
   ],
   "workbench.colorTheme": "Solarized Dark",
   "playwright.reuseBrowser": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "rubyLsp.enabledFeatures": {
     "codeActions": true,
     "diagnostics": true,
@@ -73,7 +80,7 @@
     "inlayHint": true,
     "onTypeFormatting": true,
     "selectionRanges": true,
-    "semanticHighlighting": true,
+    "semanticHighlighting": false,
     "completion": true,
     "codeLens": true,
     "definition": true,
