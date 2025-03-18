@@ -25,15 +25,31 @@
     st = status
     su = submodule update
     sur = submodule update --remote
-[credential]
-    helper = cache
-[pull]
-    rebase = true
-[fetch]
-    prune = true
-[diff]
-    colorMoved = zebra
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto
+[commit]
+    verbose = true
 [core]
     excludesFile = ~/.gitignore-global
+[credential]
+    helper = cache
+[diff]
+    algorithm = histogram
+    colorMoved = zebra
+    mnemonicPrefix = true
+    renames = true
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 [init]
     defaultBranch = main
+[pull]
+    rebase = true
+[push]
+    autoSetupRemote = true
+    followTags = true
+[tag]
+    sort = version:refname
