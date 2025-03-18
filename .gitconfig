@@ -6,11 +6,6 @@
 [url "ssh://git@gitlab.com"]
     insteadOf = https://gitlab.com
 
-[filter "lfs"]
-    process = git-lfs filter-process
-    required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
 [alias]
     b = branch
     cm = commit -m
@@ -44,6 +39,11 @@
     prune = true
     pruneTags = true
     all = true
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
 [init]
     defaultBranch = main
 [pull]
