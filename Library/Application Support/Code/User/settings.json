@@ -88,5 +88,9 @@
     "signatureHelp": true,
     "typeHierarchy": true
   },
-  "rubyLsp.formatter": "rubocop"
+  "rubyLsp.formatter": "rubocop",
+  "rubyLsp.erbSupport": false,
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  }
 }
