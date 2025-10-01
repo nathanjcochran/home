@@ -29,14 +29,26 @@ unset tmux_cmd
 if [ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ]; then
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 fi
+if [ -d "/opt/homebrew/opt/ed/libexec/gnubin" ]; then
+    export PATH="/opt/homebrew/opt/ed/libexec/gnubin:$PATH"
+fi
 if [ -d "/opt/homebrew/opt/grep/libexec/gnubin" ]; then
     export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+fi
+if [ -d "/opt/homebrew/opt/gawk/libexec/gnubin" ]; then
+    export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
 fi
 if [ -d "/opt/homebrew/opt/gnu-sed/libexec/gnubin" ]; then
     export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
+if [ -d "/opt/homebrew/opt/gnu-tar/libexec/gnubin" ]; then
+    export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+fi
 if [ -d "/opt/homebrew/opt/findutils/libexec/gnubin" ]; then
     export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+fi
+if [ -d "/opt/homebrew/opt/zip/bin" ]; then
+    export PATH="/opt/homebrew/opt/zip/bin:$PATH"
 fi
 if [ -d "/opt/homebrew/opt/postgresql@16/bin" ]; then
     export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
