@@ -57,9 +57,6 @@ if command -v "rg" &> /dev/null;  then
     }
 fi
 
-# Add pip install dir to path
-export PATH="${HOME}/.local/bin:${PATH}"
-
 # Add Go bins to path
 export PATH="/usr/local/go/bin:${HOME}/go/bin:${PATH}"
 
