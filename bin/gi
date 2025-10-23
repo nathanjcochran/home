@@ -1,0 +1,3 @@
+#!/bin/bash
+
+go install $(dirname "$(go env GOMOD)")/...
