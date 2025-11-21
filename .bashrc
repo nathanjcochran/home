@@ -50,8 +50,8 @@ fi
 if [ -d "/opt/homebrew/opt/zip/bin" ]; then
     export PATH="/opt/homebrew/opt/zip/bin:$PATH"
 fi
-if [ -d "/opt/homebrew/opt/postgresql@16/bin" ]; then
-    export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+if [ -d "/opt/homebrew/opt/postgresql@17/bin" ]; then
+    export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 fi
 
 
