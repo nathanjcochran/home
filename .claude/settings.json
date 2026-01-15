@@ -1,0 +1,41 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "env": {
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git mv:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(go build:*)",
+      "Bash(go doc:*)",
+      "Bash(go fmt:*)",
+      "Bash(go generate:*)",
+      "Bash(go get:*)",
+      "Bash(go install:*)",
+      "Bash(go list:*)",
+      "Bash(go mod:*)",
+      "Bash(go test:*)",
+      "Bash(go tool:*)",
+      "Bash(go vet:*)",
+      "Bash(gopls rename:*)",
+      "Bash(shellcheck:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:pkg.go.dev)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "default"
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": false
+  }
+}
