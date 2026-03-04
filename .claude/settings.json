@@ -11,8 +11,8 @@
     "allow": [
       "Bash(find:*)",
       "Bash(git diff:*)",
-      "Bash(git diff:*)",
       "Bash(git log:*)",
+      "Bash(git pull:*)",
       "Bash(git status:*)",
       "Bash(go build:*)",
       "Bash(go doc:*)",
@@ -32,6 +32,7 @@
       "Bash(shellcheck:*)",
       "Bash(staticcheck:*)",
       "Bash(wc:*)",
+      "Read(path:/Users/nathan/go/pkg/mod/*)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:pkg.go.dev)",
       "WebFetch(domain:raw.githubusercontent.com)",
@@ -41,7 +42,6 @@
     "ask": [],
     "defaultMode": "default"
   },
-  "model": "opus",
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": false
   },
