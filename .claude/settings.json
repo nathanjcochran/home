@@ -11,7 +11,10 @@
       "Bash(cat:*)",
       "Bash(errcheck:*)",
       "Bash(find:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
       "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
       "Bash(gh run watch:*)",
       "Bash(git diff:*)",
       "Bash(git fetch:*)",
@@ -58,5 +61,6 @@
     "gopls-lsp@claude-plugins-official": false
   },
   "syntaxHighlightingDisabled": false,
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "editorMode": "vim"
 }
