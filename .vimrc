@@ -151,7 +151,8 @@ autocmd FileType markdown :set tw=80
 autocmd FileType markdown :set spell
 
 " Vim-go configuration
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command="gopls"
+let g:go_gopls_gofumpt=1
 let g:go_addtags_transform="camelcase"
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
@@ -170,10 +171,6 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_extra_types = 1
 " let g:go_highlight_variable_declarations = 1
 " let g:go_highlight_variable_assignments = 1
-
-" Because goimports doesn't support the -s option, and gofmt doesn't support
-" imports, we run gofmt -w -s after goimports (less than ideal, but it works)
-:autocmd BufWritePost *.go silent execute "!gofmt -s -w <afile>" | redraw!
 
 " Turn on spellcheck in strings
 autocmd FileType go :set spell
