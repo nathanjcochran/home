@@ -62,5 +62,7 @@
   },
   "syntaxHighlightingDisabled": false,
   "effortLevel": "high",
-  "editorMode": "vim"
+  "tui": "default",
+  "editorMode": "vim",
+  "skipAutoPermissionPrompt": true
 }
