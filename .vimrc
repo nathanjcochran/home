@@ -20,10 +20,6 @@ nnoremap <silent> <return> :noh<return><return>
 " More memory/time for syntax parsing in large files
 set maxmempattern=25000
 
-" Use old regular expression engine, which appears
-" to be faster for Go syntax highlighting
-" set re=1
-
 " Tabs and indentation
 set autoindent
 set smartindent
@@ -77,8 +73,11 @@ nnoremap k gk
 " Use the computer's default clipboard (windows should use unnamed)
 set clipboard=unnamed,unnamedplus
 
-" Make sure clipboard contents aren't cleared on exit
-autocmd VimLeave * call system('echo ' . shellescape(getreg('+')) . ' | xclip -selection clipboard')
+" Make sure clipboard contents aren't cleared on exit (X11 ownership quirk).
+" Guarded on xclip so it's a no-op on macOS, where the pasteboard already persists.
+if executable('xclip')
+  autocmd VimLeave * call system('echo -n ' . shellescape(getreg('+')) . ' | xclip -selection clipboard')
+endif
 
 " Enable use of mouse (bad karma)
 set mouse=a
@@ -219,7 +218,7 @@ set <M-\>=\
 
 " Fix arrow key mappings in tmux (ctrl-arrow + shift-arrow)
 " see: https://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
-if &term =~ '^screen'
+if &term =~ '^tmux'
     execute "set <xUp>=\e[1;*A"
     execute "set <xDown>=\e[1;*B"
     execute "set <xRight>=\e[1;*C"
