@@ -92,5 +92,6 @@
   "rubyLsp.erbSupport": false,
   "workbench.editorAssociations": {
     "*.svg": "default"
-  }
+  },
+  "chat.disableAIFeatures": true
 }
