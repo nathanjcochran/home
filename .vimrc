@@ -262,6 +262,3 @@ au FileType sql setl formatprg=/usr/bin/pg_format\ --no-extra-line\ --type-case=
 
 " Format highlighted text with pg_format
 vnoremap <leader>q :! pg_format --no-extra-line --type-case=2<CR>
-
-" Run doctoc on saving a README.md file
-:autocmd BufWritePost README.md silent execute "!doctoc <afile> &>/dev/null" | redraw!
