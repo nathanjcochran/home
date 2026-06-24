@@ -208,22 +208,10 @@ inoremap <silent> <M-k> <Esc>:TmuxNavigateUp<cr>i
 inoremap <silent> <M-l> <Esc>:TmuxNavigateRight<cr>i
 inoremap <silent> <M-\> <Esc>:TmuxNavigatePrevious<cr>i
 
-" Make sure key codes for alt-keys are interpreted correctly
-" (Note that this breaks macros with <Esc> followed by h/j/k/l)
-set <M-h>=h
-set <M-j>=j
-set <M-k>=k
-set <M-l>=l
-set <M-\>=\
-
-" Fix arrow key mappings in tmux (ctrl-arrow + shift-arrow)
-" see: https://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
-if &term =~ '^tmux'
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-endif
+" Ask vim to request modifyOtherKeys mode 2 under tmux. tmux relays it (we
+" have `extended-keys on`), so Alt-h/j/k/l arrive as CSI sequences that vim
+" recognizes natively — replaces the explicit <M-?> termcodes we used to use.
+set keyprotocol+=tmux:mok2
 
 " Timeout for keycodes is instantaneous so esc key doesn't wait for next key
 " press (to see if it should be interpreted as the alt/ctrl/shift key)
