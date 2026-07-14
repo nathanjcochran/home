@@ -1,11 +1,17 @@
 {
-  "disableClaudeAiConnectors": true,
-  "env": {
-    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1"
-  },
   "attribution": {
     "commit": "",
     "pr": ""
+  },
+  "autoMemoryEnabled": false,
+  "disableClaudeAiConnectors": true,
+  "editorMode": "vim",
+  "effortLevel": "high",
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": false
+  },
+  "env": {
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1"
   },
   "permissions": {
     "allow": [
@@ -58,12 +64,7 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": false
-  },
+  "skipAutoPermissionPrompt": true,
   "syntaxHighlightingDisabled": false,
-  "effortLevel": "high",
-  "tui": "default",
-  "editorMode": "vim",
-  "skipAutoPermissionPrompt": true
+  "tui": "default"
 }
