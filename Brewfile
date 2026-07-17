@@ -1,6 +1,5 @@
 brew "bash"
 brew "bash-completion@2"
-brew "colima"
 brew "coreutils"
 brew "docker"
 brew "docker-buildx"
