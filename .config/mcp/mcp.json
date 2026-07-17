@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "ghost": {
+      "type": "stdio",
+      "command": "/Users/nathan/go/bin/ghost",
+      "args": [
+        "mcp",
+        "start"
+      ],
+      "env": {}
+    },
+    "gopls": {
+      "type": "stdio",
+      "command": "gopls",
+      "args": [
+        "mcp"
+      ],
+      "env": {}
+    }
+  }
+}
