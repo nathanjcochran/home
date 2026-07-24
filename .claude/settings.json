@@ -57,6 +57,7 @@
     ],
     "defaultMode": "acceptEdits"
   },
+  "model": "opus[1m]",
   "disableClaudeAiConnectors": true,
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": false
@@ -66,6 +67,5 @@
   "tui": "default",
   "autoMemoryEnabled": false,
   "editorMode": "vim",
-  "skipAutoPermissionPrompt": true,
-  "model": "opus[1m]"
+  "skipAutoPermissionPrompt": true
 }
