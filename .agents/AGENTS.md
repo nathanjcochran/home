@@ -22,13 +22,24 @@
   conversation, always verify it with me before proceeding with updates.
 - Stop and ask me for clarification if you have any questions, or if things seem
   vague. Do not make assumptions.
+- Keep code comments short and to-the-point. Prefer comments on types/functions
+  over in-line comments, except when the inline code really needs an
+  explanation. Do not litter the code with comments describing what the code
+  does (that can be gleaned from reading the code itself), and do not include
+  long paragraphs describing the historical chain of reasoning that led to a
+  particular design decision. The point of comments is to provide context and
+  explain "why" of the code, but not everything we discuss is worth documenting
+  for future readers. Only document the truly significant aspects of the design
+  we finally landed on, and keep it concise. Brevity is important. Often, code
+  doesn't need any comment at all.
 - Keep PR descriptions concise and to-the-point. Do not add a bunch of extra
   sections/headers. The PR description should provide high-level context about
   what changed and why, but should not go into code-level details. The purpose
   is to convey to humans what the goal of the PR is, and broadly how it's
   achieved.
-- Do not commit or push to GitHub unless I explicitly ask you to. If I ask you
-  to commit/push once, do not take that as a standing permission going forwards.
+- Do not stage, commit, or push changes unless I explicitly ask you to. If I ask
+  you to stage/commit/push once, do not take that as a standing permission going
+  forwards.
 - I often stage, commit, or push changes manually while you are working. Do not
   assume that changes haven't been staged/commited/pushed just because you
   didn't do it yourself. If you notice that things were staged/commited/pushed
