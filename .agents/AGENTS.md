@@ -21,7 +21,24 @@
   keep them; don't revert or reformat them. Ask if one looks like a mistake.
 - Don't write to your memory files without asking.
 
+## Scope
+- Only touch or reason about files relevant to the task I gave you. Files I
+  haven't mentioned are not your concern — especially personal scratch files
+  (todo.md, notes.md, scratch/, *.local.*). Don't open, move, or investigate
+  them.
+- If you notice something outside the task (missing file, unrelated bug, odd
+  git state), mention it in one sentence and carry on with the task. Don't
+  investigate. If it seems urgent, stop and ask me — asking is always cheaper
+  than investigating.
+- Never spend more than one tool call on something I didn't ask for.
+- If you think you may have broken or lost something of mine, tell me
+  immediately, before diagnosing. Don't investigate or try to fix it first.
+
 ## Git
+- Read-only git only (status, diff, log, show, blame) unless I explicitly ask.
+  Never stash, checkout/switch, restore, reset, clean, or rm — nothing that
+  changes the working tree, index, or refs. To check whether something is
+  pre-existing, read `git diff`/`git show`; don't mutate the tree to compare.
 - Don't stage, commit, or push unless I ask — even if the change is complete,
   tests pass, and it seems like the obvious next step. Permission is
   per-request, never standing.
